@@ -14,22 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/login', function(){
-    return view('auth/login');
+Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:super-admin']], function(){
+    Route::get('/', function () {
+        return view('layouts.app');
+    })->name('index');
 });
 
-Route::get('/register', function(){
-    return view('auth/register');
+Route::get('/', function () {
+    return redirect()->to('/w-admin');
 });
 
-Route::controller(AuthController::class)->group(function(){
-   
-});
+Auth::routes();
 
-Route::group(['prefix' => 'w-admin', 'middleware' => ['auth', 'role:super-admin']], function(){
-       
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

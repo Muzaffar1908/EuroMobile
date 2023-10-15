@@ -9,14 +9,14 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('../assets/images/favicon.ico') }}">
+        <link rel="shortcut icon" href="{{ asset('/assets/images/favicon.ico') }}">
 
         <!-- Bootstrap Css -->
-        <link href="{{ asset('../assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="{{ asset('../assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{{ asset('../assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -34,11 +34,12 @@
                         </div>
                         <div class="card-body position-relative">
                             <div class="p-4 mt-n5 card rounded">
-                                <form class="form-horizontal" action="index.html">
+                                <form action="{{ route('login') }}" method="POST" class="form-horizontal">
+                                    @csrf
 
                                     <div class="mb-3">
-                                        <label for="username" class="form-label">Username</label>
-                                        <input type="text" name="name" class="form-control" id="username" placeholder="Enter username">
+                                        <label for="useremail">Email</label>
+                                        <input type="email" name="email" class="form-control" id="useremail" placeholder="Enter email">        
                                     </div>
 
                                     <div class="mb-3">
@@ -70,13 +71,13 @@
         </div>
 
         <!-- JAVASCRIPT -->
-        <script src="{{ asset('../assets/libs/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('../assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('../assets/libs/metismenu/metisMenu.min.js') }}"></script>
-        <script src="{{ asset('../assets/libs/simplebar/simplebar.min.js') }}"></script>
-        <script src="{{ asset('../assets/libs/node-waves/waves.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/simplebar/simplebar.min.js') }}"></script>
+        <script src="{{ asset('/assets/libs/node-waves/waves.min.js') }}"></script>
 
-        <script src="{{ asset('../assets/js/app.js') }}"></script>
+        <script src="{{ asset('/assets/js/app.js') }}"></script>
 
     </body>
 </html>
