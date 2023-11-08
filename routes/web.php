@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Shop\MainShopController;
+use App\Livewire\Shops\MainShop;
+use App\Livewire\Shops\MainShops;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +21,13 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:super-admin']], function(){
+Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:sklat']], function(){
     Route::get('/', function () {
-        return view('layouts.app');
+       return view('components.layouts.app');
     })->name('index');
+
+    Route::get('/mainshops', MainShops::class);
+
 });
 
 Route::get('/', function () {
