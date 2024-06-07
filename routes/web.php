@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:super-admin']], function(){
+  Route::get('/', function(){
+    return view('components.layouts.app');
+  })->name('index');
+
+ 
+
+});
+
+Route::get('/', function () {
+  return redirect()->to('/w-admin');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
