@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Shops\MainShopsController;
+use App\Http\Controllers\Shops\ShopsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,21 @@ Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:super-admin']
   Route::get('/', function(){
     return view('components.layouts.app');
   })->name('index');
+
+  Route::controller(MainShopsController::class)->group(function () {
+    Route::get('/mainshops', 'index')->name('m-index');
+    Route::post('/mainshops', 'store')->name('m-store');
+    Route::get('/mainshops/{id}', 'edit')->name('m-edit');
+    Route::put('/mainshops/{mainShop}', 'update')->name('m-update');
+  });
+
+  Route::controller(ShopsController::class)->group(function () {
+    Route::get('/shops', 'index')->name('sh-index');
+    Route::get('/shops/create', 'create')->name('sh-create');
+    Route::post('/shops/create', 'store')->name('sh-store');
+    Route::get('/shops/edit/{id}', 'edit')->name('sh-edit');
+    Route::put('/shops/edit/{id}', 'update')->name('sh-update');
+  });
 
  
 

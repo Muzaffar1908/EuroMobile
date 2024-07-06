@@ -217,8 +217,8 @@
                         <ul class="metismenu list-unstyled" id="side-menu">
                             <li class="menu-title">Menu</li>
 
-                            {{-- <li>
-                                <a href="" class="waves-effect">
+                            <li>
+                                <a href="#" class="waves-effect">
                                     <i class="ri-home-gear-line"></i><span class="badge rounded-pill bg-success float-end"></span>
                                     <span>Dashboard</span>
                                 </a>
@@ -232,9 +232,12 @@
                                     <span>Shops</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="">Main Shops</a></li>
+                                    <li><a href="{{ route('m-index') }}">Main Shops</a></li>
                                 </ul>
-                            </li> --}}
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('sh-index') }}">Shops</a></li>
+                                </ul>
+                            </li>
 
                         </ul>
                     </div>
