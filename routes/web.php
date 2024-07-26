@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\Shops\MainShopsController;
 use App\Http\Controllers\Shops\ShopsController;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,11 @@ Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:super-admin']
     Route::post('/shops/create', 'store')->name('sh-store');
     Route::get('/shops/edit/{id}', 'edit')->name('sh-edit');
     Route::put('/shops/edit/{id}', 'update')->name('sh-update');
+  });
+
+  Route::controller(CategoryController::class)->group(function () {
+    Route::get('/category', 'index')->name('cat-index');
+    Route::get('/category/create', 'create')->name('cat-create');
   });
 
  
