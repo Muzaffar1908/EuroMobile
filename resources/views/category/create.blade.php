@@ -17,16 +17,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Category Create</h4><br>
-                        <form action="" method="POST" class="needs-validation" novalidate>
+                        <form action="{{ route('cat-store') }}" method="POST" class="needs-validation" novalidate>
                             @csrf
 
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Single Select</label>
-                                        <select class="form-control select2" name="pare">
+                                        <select class="form-control select2" name="parent_id">
                                             <option>Select...</option>
-                                            <option value="AK">Alaska</option>
+                                            @foreach ($categories as $item)
+                                              <option value="{{ $item->id }}">{{ $item->name_uz }}</option>
+                                            @endforeach
                                         </select>
                                     </div>    
                                 </div>
@@ -43,9 +45,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="validationCustom02" class="form-label">Name ru</label>
@@ -69,9 +68,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="validationCustom04" class="form-label">Index</label>
@@ -85,7 +81,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="validationCustom05" class="form-label">Slug</label>
                                         <input type="text" name="slug" class="form-control" id="validationCustom05" placeholder="Slug" required>
@@ -122,4 +118,13 @@
 
  <script src="{{ asset('/assets/js/app.js') }}"></script>
 
+  <script>
+    document.getElementById('validationCustom01').addEventListener('input', function() {
+        let nameUz = this.value;
+        let slug = nameUz.trim().toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+        document.getElementById('validationCustom05').value = slug;
+    });
+ </script>
+
 @endsection
+

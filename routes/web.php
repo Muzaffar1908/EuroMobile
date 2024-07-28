@@ -44,6 +44,7 @@ Route::group(['prefix' => 'w-admin', 'middleware' => ['auth','role:super-admin']
   Route::controller(CategoryController::class)->group(function () {
     Route::get('/category', 'index')->name('cat-index');
     Route::get('/category/create', 'create')->name('cat-create');
+    Route::post('/category/create', 'store')->name('cat-store');
   });
 
  

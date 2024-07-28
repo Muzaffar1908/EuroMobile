@@ -37,18 +37,30 @@
                                 </tr>
                                 </thead>
 
-                                {{-- <tbody>
-                                    <tr>
-                                        <td>{{ $mainshops->id }}</td>
-                                        <td>{{ $mainshops->name }}</td>
-                                        <td><img src="{{ asset($mainshops->image) }}" alt="{{ $mainshops->name }}" style="max-width: 50px;"></td>
-                                        <td style="width: 100px">
-                                            <a href="{{ route('m-edit', $mainshops->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody> --}}
+                                <tbody>
+                                    @foreach($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $category->name_uz }}</td>
+                                            <td>{{ $category->name_ru }}</td>
+                                            <td>{{ $category->name_en }}</td>
+                                            <td>{{ $category->index }}</td>
+                                            <td>{{ $category->slug }}</td>
+                                            <td>
+                                                @if($category->parent_id)         
+                                                   <td>{{ $category->parent_id }}</td>         
+                                                @else
+                                                   <td> No Parent ID </td>        
+                                                @endif
+                                            </td>
+                                            <td style="width: 100px">
+                                                <a href="" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
