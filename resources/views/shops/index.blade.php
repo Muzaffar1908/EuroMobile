@@ -43,6 +43,13 @@
                                         <a href="{{ route('sh-edit', $shop->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                             <i class="fas fa-pencil-alt"></i>
                                         </a>
+                                        <form action="{{ route('sh-delete', $shop->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this shop?');" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-primary btn-sm edit" title="Delete">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
             'name_ru' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
             'index' => 'required|integer|max:11',
-            'parent_id' => 'nullable',
+            'parent_id' => 'nullable|integer|exists:categories,id',
         ];
     }
 }

@@ -19,45 +19,47 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                <h4 class="card-title">Categories</h4>
-                                <a href="{{ route('cat-create') }}" class="btn btn-success btn-sm waves-effect waves-light">Category Add</a>
+                                <h4 class="card-title">Products</h4>
+                                <a href="{{ route('p-create') }}" class="btn btn-success btn-sm waves-effect waves-light">Product Add</a>
                             </div><br>
 
                             <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                 <tr>
                                     <th>№</th>
-                                    <th>Name uz</th>
-                                    <th>Name ru</th>
-                                    <th>Name en</th>
-                                    <th>Index</th>
-                                    <th>Slug</th>
-                                    <th>Parent ID</th>
+                                    <th>Main Shop Name</th>
+                                    <th>Category Name</th>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                    <th>Valyuta</th>
+                                    <th>Price</th>
+                                    <th>Count</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($products as $key => $product)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name_uz }}</td>
-                                            <td>{{ $category->name_ru }}</td>
-                                            <td>{{ $category->name_en }}</td>
-                                            <td>{{ $category->index }}</td>
-                                            <td>{{ $category->slug }}</td>
+                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $product->main_shops->name }}</td>
+                                            <td>{{ $product->categories->name_uz }}</td>
+                                            <td>{{ $product->name }}</td>
                                             <td>
-                                                @if ($category->parent_id)
-                                                    {{ $category->parent_id }}
+                                                @if ($product->image)
+                                                    <img src="{{asset('/images/products/' .$product->image)}}" width="50px" alt="Product Image">
                                                 @else
-                                                    No Parent ID
+                                                    No Image Found
                                                 @endif
                                             </td>
+                                            <td>{{ $product->valyuta }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $product->count }}</td>
                                             <td style="width: 100px">
-                                                <a href="{{ route('cat-edit', $category->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                <a href="{{ route('p-edit', $product->id) }}" class="btn btn-outline-secondary btn-sm edit" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
-                                                <form action="{{ route('cat-delete', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');" style="display: inline;">
+                                                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-outline-primary btn-sm edit" title="Delete">

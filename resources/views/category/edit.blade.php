@@ -16,19 +16,22 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Category Create</h4><br>
-                        <form action="{{ route('cat-store') }}" method="POST" class="needs-validation" novalidate>
+                        <h4 class="card-title">Category Update</h4><br>
+                        <form action="{{ route('cat-update', $category->id) }}" method="POST" class="needs-validation" novalidate>
                             @csrf
+                            @method('PUT')
 
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Single Select</label>
+                                        <label class="form-label">Parent Category</label>
                                         <select class="form-control select2" name="parent_id">
+                                            <!-- "Select..." option for top-level categories -->
                                             <option value="" {{ old('parent_id', $category->parent_id ?? null) == null ? 'selected' : '' }}>
                                                 Select...
                                             </option>
-                                            @foreach ($categories as $item)
+                                            <!-- Loop through the available categories -->
+                                            @foreach ($categories as $item)  <!-- Use $categories, not $category, for the list of all categories -->
                                                 <option value="{{ $item->id }}" 
                                                     {{ old('parent_id', $category->parent_id ?? null) == $item->id ? 'selected' : '' }}>
                                                     {{ $item->name_uz }}
@@ -43,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="validationCustom01" class="form-label">Name uz</label>
-                                        <input type="text" name="name_uz" class="form-control" id="validationCustom01" placeholder="Name uz" required>
+                                        <input type="text" name="name_uz" class="form-control" id="validationCustom01" placeholder="Name uz" value="{{ $category->name_uz }}" required>
                                         @error('name_uz') <small class="text-danger">{{ $message }}</small> @enderror
                                         <div class="valid-feedback">
                                             Looks good!
@@ -53,7 +56,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="validationCustom02" class="form-label">Name ru</label>
-                                        <input type="text" name="name_ru" class="form-control" id="validationCustom02" placeholder="Name ru" required>
+                                        <input type="text" name="name_ru" class="form-control" id="validationCustom02" placeholder="Name ru" value="{{ $category->name_ru }}" required>
                                         @error('name_ru') <small class="text-danger">{{ $message }}</small> @enderror
                                         <div class="valid-feedback">
                                             Looks good!
@@ -66,7 +69,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="validationCustom03" class="form-label">Name en</label>
-                                        <input type="text" name="name_en" class="form-control" id="validationCustom03" placeholder="Name en" required>
+                                        <input type="text" name="name_en" class="form-control" id="validationCustom03" placeholder="Name en" value="{{ $category->name_en }}" required>
                                         @error('name_en') <small class="text-danger">{{ $message }}</small> @enderror
                                         <div class="valid-feedback">
                                             Looks good!
@@ -76,7 +79,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="validationCustom04" class="form-label">Index</label>
-                                        <input type="text" name="index" class="form-control" id="validationCustom04" placeholder="Index" required>
+                                        <input type="text" name="index" class="form-control" id="validationCustom04" placeholder="Index" value="{{ $category->index }}" required>
                                         @error('index') <small class="text-danger">{{ $message }}</small> @enderror
                                         <div class="valid-feedback">
                                             Looks good!
@@ -89,7 +92,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="validationCustom05" class="form-label">Slug</label>
-                                        <input type="text" name="slug" class="form-control" id="validationCustom05" placeholder="Slug" required>
+                                        <input type="text" name="slug" class="form-control" id="validationCustom05" placeholder="Slug" value="{{ $category->slug }}" required>
                                         @error('slug') <small class="text-danger">{{ $message }}</small> @enderror
                                         <div class="valid-feedback">
                                             Looks good!
